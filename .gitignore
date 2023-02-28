@@ -1,0 +1,6 @@
+image
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+Debug
+packages.config
