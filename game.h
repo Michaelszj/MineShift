@@ -309,16 +309,16 @@ public:
         //glDeleteVertexArrays(1, &VAO);
         //glDeleteBuffers(1, &VBO);
     }
+
+    //包含整个mesh的顶点，法线，纹理坐标
     void generate_buffer() {
-        //std::cout << "!\n";
+        
         for (int i = 0; i < vertices.size() / 3; i++) {
             data.insert(data.end(), vertices.begin() + i * 3, vertices.begin() + i * 3 + 3);
             data.insert(data.end(), normals.begin() + i * 3, normals.begin() + i * 3 + 3);
             data.insert(data.end(), texCoords.begin() + i * 2, texCoords.begin() + i * 2 + 2);
         }
-        /*for (int i = 0; i < vertices.size() / 3; i++) {
-            std::cout << data[i * 5] << ' ' << data[i * 5 + 1] << ' ' << data[i * 5 + 2] << ' ' << data[i * 5 + 3] << ' ' << data[i * 5 + 4] << std::endl;
-        }*/
+        
         glGenVertexArrays(1, &VAO);
         glBindVertexArray(VAO);
 
@@ -339,6 +339,7 @@ public:
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
+    //只包含顶点位置
     void generate_buffer_pos() {
         
         glGenVertexArrays(1, &VAO);
@@ -356,6 +357,7 @@ public:
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
+    //包含EBO，用于非cube类模型
     void generate_buffer_EBO() {
         //std::cout << "!\n";
         for (int i = 0; i < vertices.size() / 3; i++) {
@@ -363,9 +365,7 @@ public:
             data.insert(data.end(), normals.begin() + i * 3, normals.begin() + i * 3 + 3);
             data.insert(data.end(), texCoords.begin() + i * 2, texCoords.begin() + i * 2 + 2);
         }
-        /*for (int i = 0; i < vertices.size() / 3; i++) {
-            std::cout << data[i * 5] << ' ' << data[i * 5 + 1] << ' ' << data[i * 5 + 2] << ' ' << data[i * 5 + 3] << ' ' << data[i * 5 + 4] << std::endl;
-        }*/
+       
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &EBO);
         glGenBuffers(1, &VBO);
@@ -392,6 +392,8 @@ public:
         glBindVertexArray(0);
         //glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
+    
+
     void draw(glm::mat4& m, glm::mat4& v, glm::mat4& p, glm::mat4 r) {
         single_shader->use();
         glBindVertexArray(VAO);
@@ -489,6 +491,8 @@ public:
     std::set<Instance*> instances;
     unsigned int inst_num;
     unsigned int instance_buffer;
+    bool disable_cull = false;
+    bool generate_shadow = true;
 
     Model() { glGenBuffers(1, &instance_buffer); }
     Model(Mesh m) {
@@ -685,7 +689,7 @@ public:
             auto locs = x->instances;
             for (unsigned int j = 0; j < model->meshes.size(); j++) {
                 glBindVertexArray(model->meshes[j].VAO);
-                if (model->meshes.size() != 1) {
+                if (model->meshes.size() >= 3) {
                     glDrawElementsInstanced(
                         GL_TRIANGLES, model->meshes[j].indices.size(), GL_UNSIGNED_INT, 0, model->inst_num
                     );
@@ -772,6 +776,10 @@ public:
             model->shader->setMat4("projection", projection);
             model->shader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
             setLight(model->shader);
+
+            if (model->disable_cull == true) {
+                glDisable(GL_CULL_FACE);
+            }
             for (unsigned int j = 0; j < model->meshes.size(); j++) {
                 glBindVertexArray(model->meshes[j].VAO);
                 for (int i = 0; i < model->meshes[j].textures.size(); i++) {
@@ -784,7 +792,7 @@ public:
                     model->shader->setInt("skybox", model->meshes[j].textures.size());
                     model->skybox.Bind(model->meshes[j].textures.size());
                 }
-                if (model->meshes.size() != 1) {
+                if (model->meshes.size() >= 3) {
                     glDrawElementsInstanced(
                         GL_TRIANGLES, model->meshes[j].indices.size(), GL_UNSIGNED_INT, 0, model->inst_num
                     );
@@ -794,6 +802,7 @@ public:
                 }
                 
             }
+            glEnable(GL_CULL_FACE);
         }
 
 
@@ -820,7 +829,10 @@ public:
             destroying.proto->single_shader->setBool("useD", true);
             destroy[int(floor(eraseTime * 10.0f / destroying.proto->destroy_time))].Bind(1);
             setLight(destroying.proto->single_shader);
-            destroying.proto->meshes[0].draw(model, view, projection, rot);
+            for (auto mesh : destroying.proto->meshes) {
+                mesh.draw(model, view, projection, rot);
+            }
+            //destroying.proto->meshes[0].draw(model, view, projection, rot);
             destroying.proto->single_shader->setBool("useD", false);
         }
 
@@ -851,7 +863,7 @@ public:
                 model->shader->setInt("skybox", model->meshes[j].textures.size());
                 model->skybox.Bind(model->meshes[j].textures.size());
             }
-            if (model->meshes.size() != 1) {
+            if (model->meshes.size() >= 3) {
                 glDrawElementsInstanced(
                     GL_TRIANGLES, model->meshes[j].indices.size(), GL_UNSIGNED_INT, 0, model->inst_num
                 );
@@ -1152,8 +1164,6 @@ public:
         locf = glm::vec3((float)loc.x, (float)loc.y, (float)loc.z);
         return true;
     }
-
-
 
 
     void addItem(Model* proto, glm::vec3 position) {

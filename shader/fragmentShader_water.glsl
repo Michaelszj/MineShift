@@ -18,6 +18,7 @@ uniform samplerCube skybox;
 uniform sampler2D shadow_map;
 uniform mat4 lightSpaceMatrix;
 uniform vec3 eye;
+uniform float time;
 
 
 
@@ -30,6 +31,8 @@ uniform Light light;
 void main()
 {
     vec3 eyeDir = normalize(eye-Position);
-    vec3 refl = 2 * dot(eyeDir, Normal) * Normal - eyeDir;
+    vec3 newNormal = normalize(vec3(sin(time + Position.z * 3 + Position.x)/6,Normal.y,sin(time + Position.z * 3 + Position.x)/8));
+    vec3 refl = 2 * dot(eyeDir, newNormal) * newNormal - eyeDir;
     FragColor = vec4(texture(skybox, refl).rgb * vec3(0.5,0.5,0.9),0.6);
+    //FragColor = vec4(vec3(0.5,0.5,0.9) * ((sin(time + Position.x * 5 + Position.z * 4) + 1)) / 2,0.6);
 }

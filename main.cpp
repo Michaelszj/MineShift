@@ -266,6 +266,154 @@ int main() {
         0.5f,0.0f,
     };
 
+    std::vector<float> cube_else_v = {
+     0.5f, -0.5f, -0.5f,
+    -0.5f, -0.5f, -0.5f,
+     0.5f,  0.5f, -0.5f,
+    -0.5f,  0.5f, -0.5f,
+     0.5f,  0.5f, -0.5f,
+    -0.5f, -0.5f, -0.5f,
+
+    -0.5f, -0.5f,  0.5f,
+     0.5f, -0.5f,  0.5f,
+     0.5f,  0.5f,  0.5f,
+     0.5f,  0.5f,  0.5f,
+    -0.5f,  0.5f,  0.5f,
+    -0.5f, -0.5f,  0.5f,
+
+    -0.5f,  0.5f,  0.5f,
+    -0.5f,  0.5f, -0.5f,
+    -0.5f, -0.5f, -0.5f,
+    -0.5f, -0.5f, -0.5f,
+    -0.5f, -0.5f,  0.5f,
+    -0.5f,  0.5f,  0.5f,
+
+     0.5f,  0.5f, -0.5f,
+     0.5f,  0.5f,  0.5f,
+     0.5f, -0.5f, -0.5f,
+     0.5f, -0.5f,  0.5f,
+     0.5f, -0.5f, -0.5f,
+     0.5f,  0.5f,  0.5f,
+
+    
+    };
+
+    std::vector<float> cube_else_n = {
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+
+        0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 1.0f,
+
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+
+       
+    };
+
+    std::vector<float> cube_else_t = {
+     1.0f, 0.0f,
+     0.0f, 0.0f,
+     1.0f, 1.0f,
+     0.0f, 1.0f,
+     1.0f, 1.0f,
+     0.0f, 0.0f,
+
+     0.0f, 0.0f,
+     1.0f, 0.0f,
+     1.0f, 1.0f,
+     1.0f, 1.0f,
+     0.0f, 1.0f,
+     0.0f, 0.0f,
+
+     0.0f, 1.0f,
+     1.0f, 1.0f,
+     1.0f, 0.0f,
+     1.0f, 0.0f,
+     0.0f, 0.0f,
+     0.0f, 1.0f,
+
+     1.0f, 1.0f,
+     0.0f, 1.0f,
+     1.0f, 0.0f,
+     0.0f, 0.0f,
+     1.0f, 0.0f,
+     0.0f, 1.0f,
+
+    
+    };
+
+    std::vector<float> cube_top_v = {
+    
+    -0.5f, -0.5f, -0.5f,
+     0.5f, -0.5f, -0.5f,
+     0.5f, -0.5f,  0.5f,
+     0.5f, -0.5f,  0.5f,
+    -0.5f, -0.5f,  0.5f,
+    -0.5f, -0.5f, -0.5f,
+
+     0.5f,  0.5f, -0.5f,
+    -0.5f,  0.5f, -0.5f,
+     0.5f,  0.5f,  0.5f,
+    -0.5f,  0.5f,  0.5f,
+     0.5f,  0.5f,  0.5f,
+    -0.5f,  0.5f, -0.5f,
+    };
+
+    std::vector<float> cube_top_n = {
+        
+
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+    };
+
+    std::vector<float> cube_top_t = {
+    
+     0.0f, 1.0f,
+     1.0f, 1.0f,
+     1.0f, 0.0f,
+     1.0f, 0.0f,
+     0.0f, 0.0f,
+     0.0f, 1.0f,
+
+     1.0f, 1.0f,
+     0.0f, 1.0f,
+     1.0f, 0.0f,
+     0.0f, 0.0f,
+     1.0f, 0.0f,
+     0.0f, 1.0f
+    };
+
     std::vector<float> skyboxVertices = {
         // positions          
         -1.0f,  1.0f, -1.0f,
@@ -360,7 +508,8 @@ int main() {
     Shader bShader("shader/vertexShader.glsl", "shader/fragmentShader.glsl");
     Shader cShader("shader/vertexShader_common.glsl", "shader/fragmentShader_common.glsl");
     Shader dShader("shader/vertexShader_skybox.glsl", "shader/fragmentShader_skybox.glsl");
-    Shader waterShader("shader/vertexShader_common.glsl", "shader/fragmentShader_water.glsl");
+    Shader waterShader("shader/vertexShader_water.glsl", "shader/fragmentShader_water.glsl");
+    Shader waterDepthShader("shader/vertexShader_water.glsl", "shader/depthShader_fs.glsl");
     Shader depthShader("shader/depthShader_vs.glsl", "shader/depthShader_fs.glsl");
     Shader debugShader("shader/debugShader_vs.glsl", "shader/debugShader_fs.glsl");
     scene.depthShader = &depthShader;
@@ -381,6 +530,9 @@ int main() {
     Texture diamond_texture("texture/blocks/diamond_block.png");
     Texture gold_texture("texture/blocks/gold_block.png");
     Texture glass_texture("texture/blocks/glass.png");
+    Texture log_texture("texture/blocks/log_oak.png");
+    Texture wood_texture("texture/blocks/log_oak_top.png");
+    Texture leaf_texture("texture/blocks/leaves_oak_green.png");
     Texture destroy[10]{
         Texture("texture/blocks/destroy_stage_0.png"),
         Texture("texture/blocks/destroy_stage_1.png"),
@@ -395,7 +547,10 @@ int main() {
     };
     scene.destroy = destroy;
 
-    
+#pragma region MyRegion
+
+
+
     Model stone(Mesh(cube_v, cube_n, cube_t));
     stone.destroy_time = 0.2f;
     stone.meshes[0].textures.push_back(stone_texture);
@@ -441,7 +596,28 @@ int main() {
     glass.shader = &aShader;
     glass.single_shader = &bShader;
     glass.bind_shader();
+    glass.disable_cull = true;
+    glass.generate_shadow = false;
     objList.push_back(&glass);
+
+    Model log(Mesh(cube_else_v, cube_else_n, cube_else_t));
+    log.meshes.push_back(Mesh(cube_top_v, cube_top_n, cube_top_t));
+    log.destroy_time = 0.3f;
+    log.meshes[0].textures.push_back(log_texture);
+    log.meshes[1].textures.push_back(wood_texture);
+    log.shader = &aShader;
+    log.single_shader = &bShader;
+    log.bind_shader();
+    objList.push_back(&log);
+
+    Model leaf(Mesh(cube_v, cube_n, cube_t));
+    leaf.destroy_time = 0.3f;
+    leaf.meshes[0].textures.push_back(leaf_texture);
+    leaf.shader = &aShader;
+    leaf.single_shader = &bShader;
+    leaf.bind_shader();
+    leaf.disable_cull = true;
+    objList.push_back(&leaf);
 
 
 
@@ -454,7 +630,7 @@ int main() {
     water.bind_shader();
     objList.push_back(&water);
 
-
+#pragma endregion
     /*Model robot;
     load_model(robot, "model/nanosuit/nanosuit.obj");
     robot.shader = &cShader;
@@ -527,6 +703,14 @@ int main() {
         scene.compute_depthmap();
         scene.render_skybox();
         scene.render_by_obj();
+        water.shader = &waterDepthShader;
+        water.shader->use();
+        float temptime = (float)glfwGetTime();
+        water.shader->setFloat("time", temptime);
+        scene.render_single_obj(&water);
+        water.shader = &waterShader;
+        water.shader->use();
+        water.shader->setFloat("time", temptime);
         scene.render_single_obj(&water);
         /*glClear(GL_DEPTH_BUFFER_BIT);
         glDepthMask(GL_FALSE);

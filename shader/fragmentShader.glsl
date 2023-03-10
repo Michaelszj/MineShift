@@ -51,7 +51,11 @@ void main()
     vec2 texelSize = 1.0 / textureSize(shadow_map, 0);
 
     int s = 4;
-    float stepl = 0.01;
+    float eye_dis = length(eye - Position);
+    if(eye_dis > 0.3) eye_dis = 0.3;
+    s = int(2 / eye_dis);
+    if(s == 0) s = 1;
+    float stepl = 0.06 / s;
     vec3 tempx = normalize(dFdx(Position));
     vec3 tempy = normalize(dFdy(Position));
     for(int x = -s; x <= s; ++x)
